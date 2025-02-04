@@ -27,6 +27,7 @@
             <button
               type="button"
               class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              id="mobile-menu-button"
             >
               <span class="sr-only">Open main menu</span>
               <svg
@@ -65,7 +66,12 @@
           </div>
         </nav>
         <!-- Mobile menu, show/hide based on menu open state. -->
-        <div class="lg:hidden" role="dialog" aria-modal="true">
+        <div
+          class="lg:hidden hidden"
+          role="dialog"
+          aria-modal="true"
+          id="mobile-menu"
+        >
           <!-- Background backdrop, show/hide based on slide-over state. -->
           <div class="fixed inset-0 z-50"></div>
           <div
@@ -79,6 +85,7 @@
               <button
                 type="button"
                 class="-m-2.5 rounded-md p-2.5 text-gray-700"
+                id="mobile-menu-close"
               >
                 <span class="sr-only">Close menu</span>
                 <svg
@@ -134,6 +141,20 @@
           </div>
         </div>
       </header>
+
+      <script>
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileMenuClose = document.getElementById("mobile-menu-close");
+
+        mobileMenuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        mobileMenuClose.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      </script>
 
       <!-- Hero Section -->
       <div class="relative isolate px-6 pt-14 lg:px-8" id="home">
@@ -346,7 +367,7 @@
           <img
             src="https://media.licdn.com/dms/image/v2/D5612AQHikNOyUteWxg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1699878560270?e=2147483647&amp;v=beta&amp;t=d2-cHWsxvqFpcCOsP5c1tOJoT8E5ojlkHrm4JCqmuUE"
             alt="Product screenshot"
-            class="w-[48rem] max-w-none rounded-xl ring-1 shadow-xl ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
+            class="w-[48rem] rounded-xl ring-1 shadow-xl ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0 max-w-full lg:max-w-none"
             width="2432"
             height="1442"
           />
@@ -740,7 +761,7 @@
                     <div class="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                       <div class="h-64 w-44 overflow-hidden rounded-lg">
                         <img
-                          src="https://example.com/cloud-computing-image.jpg"
+                          src="https://img.freepik.com/premium-photo/cloud-computing-network-architecture_1179475-10526.jpg"
                           alt="Cloud Computing"
                           class="size-full object-cover"
                         />
@@ -1013,14 +1034,34 @@
                 role="switch"
                 aria-checked="false"
                 aria-labelledby="switch-1-label"
+                id="accept-policy-switch"
               >
                 <span class="sr-only">Agree to policies</span>
                 <span
                   aria-hidden="true"
                   class="h-4 w-4 translate-x-0 transform rounded-full bg-white ring-1 ring-gray-900/5 transition duration-200 ease-in-out"
+                  id="accept-policy-switch-thumb"
                 ></span>
               </button>
             </div>
+            <script>
+              const acceptPolicySwitch = document.getElementById(
+                "accept-policy-switch"
+              );
+              const acceptPolicySwitchThumb = document.getElementById(
+                "accept-policy-switch-thumb"
+              );
+
+              acceptPolicySwitch.addEventListener("click", () => {
+                const isChecked =
+                  acceptPolicySwitch.getAttribute("aria-checked") === "true";
+                acceptPolicySwitch.setAttribute("aria-checked", !isChecked);
+                acceptPolicySwitchThumb.classList.toggle("translate-x-0");
+                acceptPolicySwitchThumb.classList.toggle("translate-x-4");
+                acceptPolicySwitch.classList.toggle("bg-indigo-600");
+                acceptPolicySwitch.classList.toggle("bg-gray-200");
+              });
+            </script>
             <label class="text-sm text-gray-600" id="switch-1-label">
               By selecting this, you agree to our
               <a href="#" class="font-semibold text-indigo-600"
@@ -1077,8 +1118,18 @@
               Have questions or want to learn more about our technology
               showcase? Get in touch with us.
             </p>
-            <p class="mt-2 text-gray-600">Email: info@infotech.com</p>
-            <p class="mt-2 text-gray-600">Phone: +1 (123) 456-7890</p>
+            <p class="mt-2 text-gray-600">
+              Email:
+              <a href="mailto:info@infotech.com" class="text-indigo-600"
+                >info@infotech.com</a
+              >
+            </p>
+            <p class="mt-2 text-gray-600">
+              Phone:
+              <a href="tel:+11234567890" class="text-indigo-600"
+                >+1 (123) 456-7890</a
+              >
+            </p>
           </div>
         </div>
         <div class="mt-8 border-t border-gray-300 pt-6 text-center">
